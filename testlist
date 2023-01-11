@@ -1,0 +1,10 @@
+{
+    tsmc65.fakelib
+    adder.fakesdc
+    adder.fakev
+}
+{
+    tsmc65.fakelib
+    simple.fakesdc
+    simple.fakev
+}

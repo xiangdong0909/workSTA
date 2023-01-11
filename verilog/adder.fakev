@@ -1,0 +1,29 @@
+10
+in1 INPUT
+in2 INPUT
+init INPUT
+reset INPUT
+out1 OUTPUT
+carry OUTPUT
+r0 DFF
+r1 DFF
+r2 DFF
+r3 DFF
+17
+in1 r0/D
+in2 r1/D
+r2/Q out1
+r3/Q carry
+r0/Q xor0/A1
+r0/Q and0/A1
+xor0/Z r2/D
+and0/Z r3/D
+r2/Q mux0/A1
+init i0/I
+i0/ZN mux0/A2
+reset mux0/S
+mux0/Z mux1/A1
+r1/Q mux1/A2
+init mux1/S
+mux1/Z xor0/A2
+mux1/Z and0/A2
