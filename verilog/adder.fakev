@@ -1,4 +1,4 @@
-10
+15
 in1 INPUT
 in2 INPUT
 init INPUT
@@ -9,6 +9,11 @@ r0 DFF
 r1 DFF
 r2 DFF
 r3 DFF
+i0 INV
+xor0 XOR
+and0 AND
+mux0 MUX
+mux1 MUX
 17
 in1 r0/D
 in2 r1/D
