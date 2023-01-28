@@ -1,10 +1,7 @@
 #include "sta.hpp"
-#include <iostream>
 
-namespace sta {
+namespace xiangdongSTA {
 
-void Sta::print() {
-    std::cout << "num_ = " << num_ << std::endl;
-}
 
-} //~ namespace sta
+
+} //~ namespace xiangdongSTA

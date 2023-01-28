@@ -1,16 +1,16 @@
 #include <fstream>
 #include <iostream>
 
-#include "vertex.hpp"
+#include "sta.hpp"
 
-namespace STA {
-
-extern const double INF;
+using namespace STA;
+using namespace std;
 
 Tclock readSdc() {
   std::ifstream ifs;
-  ifs.open("../sdc/adder.fakesdc", std::ios::in);
+  ifs.open("/home/xiangdong/workself/workSTA/sdc/adder.fakesdc", std::ios::in);
   if (!ifs.is_open()) {
+    cout << "fail" << endl;
     return 0;
   }
   std::string str;
@@ -21,7 +21,7 @@ Tclock readSdc() {
 
 void readLib(std::vector<Cell*>& cells) {
   std::ifstream ifs;
-  ifs.open("../lib/tsmc65.fakelib", std::ios::in);
+  ifs.open("/home/xiangdong/workself/workSTA/lib/tsmc65.fakelib", std::ios::in);
   if (!ifs.is_open()) {
     return;
   }
@@ -58,7 +58,7 @@ void findCellPin(const std::string& str, std::string& cell, std::string& pin) {
 
 void readNetlists(std::vector<Vertex*>& vertexs, std::vector<Edge*>& edges) {
   std::ifstream ifs;
-  ifs.open("../verilog/adder.fakev", std::ios::in);
+  ifs.open("/home/xiangdong/workself/workSTA/verilog/adder.fakev", std::ios::in);
   if (!ifs.is_open()) {
     return;
   }
@@ -84,23 +84,20 @@ void readNetlists(std::vector<Vertex*>& vertexs, std::vector<Edge*>& edges) {
 }
 
 int main() {
-    Tclock t = readSdc();
-    std::vector<Cell*> cells;
-    readLib(cells);
-    std::vector<Vertex*> vertexs;
-    std::vector<Edge*> edges;
-    readNetlists(vertexs, edges);
-    Graph graph = Graph(t, cells, vertexs, edges);
-    graph.calcSlack();
-    using namespace std;
-    cout << "t: " << graph.t() << endl;
-    cout << "starts:" << endl;
-    for(Vertex* v : graph.starts()) cout << v->name() << " ";
-    cout << endl;
-    cout << "ends:" << endl;
-    for(Vertex* v : graph.ends()) cout << v->name() << " ";
-    cout << endl;
-    return 0;
+  Tclock t = readSdc();
+  std::vector<Cell*> cells;
+  readLib(cells);
+  std::vector<Vertex*> vertexs;
+  std::vector<Edge*> edges;
+  readNetlists(vertexs, edges);
+  Graph graph = Graph(t, cells, vertexs, edges);
+  graph.calcSlack();
+  cout << "t: " << graph.t() << endl;
+  cout << "starts:" << endl;
+  for (Vertex* v : graph.starts()) cout << v->name() << " ";
+  cout << endl;
+  cout << "ends:" << endl;
+  for (Vertex* v : graph.ends()) cout << v->name() << " ";
+  cout << endl;
+  return 0;
 }
-
-}  // namespace xiangdongSTA

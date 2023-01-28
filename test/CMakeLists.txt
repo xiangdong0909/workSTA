@@ -1,4 +1,4 @@
-add_executable(sta test.cpp)
+add_executable(sta main.cpp)
 
 target_link_libraries(sta libsta)
 
